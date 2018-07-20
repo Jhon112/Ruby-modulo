@@ -1,13 +1,19 @@
+#Hacer que lea un archivo y lo copie en uno nuevo: 
+
 # file = File.read("archivo_prueba.txt")
 # File.write("archivo_prueba_new.txt", file)
 
 arr = IO.readlines("archivo_prueba_new.txt")
 p arr
 
-filtrar = []
+new_array = arr.map {|chr| chr.to_i}
+numeros = []
 
-arr.each do |element|
+new_array.each do |element|
   if element > 10
-    filtrar << arr
+    numeros << element
+  end
 end
-end
+
+p numeros
+p new_array
