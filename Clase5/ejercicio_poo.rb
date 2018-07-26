@@ -63,15 +63,80 @@ class Bus
     end
 end
 
-p1 = Bus.new(20)
+# p1 = Bus.new(20)
+# p1.acelerar(60)
+# puts "Vas a una velocidad de #{p1.velocidad}"
+# p1.frenar
+# puts "Frenaste y tu velocidad ahora es #{p1.velocidad}"
+# p1.agregar(18)
+# p1.bajar(10)
+
+# p2 = Bus.new(20)
+# p2.agregar(14)
+
+puts Bus.pasajeros_count
+
+
+
+# Declare dos clases adicionales que hereden de la clase Bus, llamadas MicroBus y SuperBus
+
+class MicroBus < Bus
+
+    attr_accessor :hora
+    # La clase MicroBus debe poder hacer todo lo q hace el Bus y ademas:
+    # - Al instanciarse recibe un hash del tipo { nombre_ruta1: "6-9", nombre_ruta2: "9-12" ...} 
+
+    def initialize(asientos, rutas)
+        super(asientos)
+        @ruta = rutas       
+    end
+
+    # - un metodo que reciba la hora y te diga la ruta en la que se encuentra.
+    
+    def ruta_actual(hora)
+        hora = hora
+        if hora > 6 && hora < 9
+            puts "Te encuentras en la ruta #{@ruta[:nombre_ruta1]}"
+        elsif hora > 9 && hora < 12 
+            puts "Te encuentras en la ruta #{@ruta[:nombre_ruta2]}"
+        else 
+            puts "Te encuentras en la ruta #{@ruta[:nombre_ruta3]}"   
+        end        
+    end
+end
+
+rutas = {nombre_ruta1: "6-9", nombre_ruta2: "9-12", nombre_ruta3: "12-6"}
+
+p1 = MicroBus.new(20, rutas)
 p1.acelerar(60)
 puts "Vas a una velocidad de #{p1.velocidad}"
 p1.frenar
 puts "Frenaste y tu velocidad ahora es #{p1.velocidad}"
 p1.agregar(18)
 p1.bajar(10)
+p1.ruta_actual(8)
 
-p2 = Bus.new(20)
-p2.agregar(14)
+p2 = MicroBus.new(20, rutas)
+p2.ruta_actual(3)
+   
 
-puts Bus.pasajeros_count
+# La clase SuperBus debe poder hacer todo lo q hace el Bus y ademas:
+# - Al instanciarse recibe el precio del ticket de viaje.
+
+class SuperBus < Bus
+
+    @@dinero_acomulado = 0
+
+    def initialize(asientos, precio_tickete)
+        super(asientos)
+        @precio = precio_tickete
+    end
+    
+    # - Un metodo que retorne el dinero total acumulado por la instancia del SuperBus
+    def acomulado
+        dinero += @precio
+    end
+
+    # - Un atributo y metodo de clase que retorne el total de dinero acumulado por todos las instancias de 
+    #SuperBus
+end
