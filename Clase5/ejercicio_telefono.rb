@@ -48,7 +48,7 @@ class Telefono
     
     # 4. mostrar historial de llamadas, cada llamada almacena la duración de la misma.
     def historial
-
+        File.open("historial.txt, 'a') { |file| file.write("nombre + ") }
 
     end
 end

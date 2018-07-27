@@ -11,6 +11,7 @@ class Bus
         @asientos = asientos
         @velocidad = 0
         @pasajeros = 0
+        @pasajeros_entran = 0
     end
 
     # Un metodo que permita acelerar, el método recibe el numero de km que acelera
@@ -36,8 +37,6 @@ class Bus
         else
             puts "Ya no se pueden subir mas pasajeros, asientos llenos. Solo hay disponibles #{@asientos_disponibles}"                
         end
-
-
     end
 
     # -Un atributo de clase que acumule el numero total de pasajeros que se han subido en todos mis buses 
@@ -123,20 +122,52 @@ p2.ruta_actual(3)
 # La clase SuperBus debe poder hacer todo lo q hace el Bus y ademas:
 # - Al instanciarse recibe el precio del ticket de viaje.
 
+#SuperBus
 class SuperBus < Bus
 
-    @@dinero_acomulado = 0
-
+    @@dinero_acumulado = 0  
+      
     def initialize(asientos, precio_tickete)
         super(asientos)
-        @precio = precio_tickete
+        @precio_tickete = precio_tickete  
+        @acumulado = 0     
+    end
+    
+    def agregar(pasajeros_entran)
+        
+        if pasajeros_entran <= (@asientos - @pasajeros)
+            puts "Se han subido #{pasajeros_entran} pasajeros"
+            @pasajeros += pasajeros_entran
+            @@pasajeros_count += pasajeros_entran
+
+            @asientos_disponibles = @asientos - @pasajeros
+
+            acumulado_total(pasajeros_entran)
+        else
+            puts "Ya no se pueden subir mas pasajeros, asientos llenos. Solo hay disponibles #{@asientos_disponibles}"                
+        end
     end
     
     # - Un metodo que retorne el dinero total acumulado por la instancia del SuperBus
-    def acomulado
-        dinero += @precio
+    private
+    def acumulado_total(entran)     
+        @acumulado += (entran * @precio_tickete)
+        @@dinero_acumulado += @acumulado   
+             
     end
 
     # - Un atributo y metodo de clase que retorne el total de dinero acumulado por todos las instancias de 
-    #SuperBus
+    def self.dinero_acumulado
+        puts @@dinero_acumulado
+    end
 end
+
+tickete = 100
+
+sp = SuperBus.new(20, tickete)
+sp.agregar(10)
+sp.agregar(9)
+
+sp1 = SuperBus.new(20, tickete)
+sp1.agregar(16)
+SuperBus.dinero_acumulado
