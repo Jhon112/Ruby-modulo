@@ -43,31 +43,49 @@ module Conexiones
             puts programacion
         end
     end
+
+    # - una clase Clima: con un metodo que reciba la hora del dia y retorne el pronostico para ese momento 
+    #(crean un array con opciones de pronostico)
+
+    class Clima
+
+        def pronostico(hora)
+            @hora = hora
+            clima = ["Lluvia", "Soleado", "Nublado", "Tormenta electrica"]
+            
+            if hora >= 6 && hora < 9
+                 puts "El pronostico para #{hora} es #{clima[0]}" 
+            elsif hora >= 9 && hora < 12 
+                puts "El pronostico para #{hora} es #{clima[1]}"
+            elsif hora >= 12 && hora < 16    
+                puts "El pronostico para #{hora} es #{clima[2]}"
+            else 
+                puts "El pronostico para #{hora} es #{clima[3]}"   
+             end   
+        end        
+    end
 end
+
+# Incluya el modulo Conexiones en la clase Bus y utilice los metodos en instancia de Bus, MicroBus y SuperBus.
+# Prueben incluyendo Conexiones directamente en MicroBus y SuperBus.
 
 class Bus
     include Conexiones 
-    attr_reader :gps, :velocidad, :television
+    attr_reader :gps, :velocidad, :television, :clima
 
     def initialize
         canales = ["TNT", "Fox", "MTV", "Caracol", "RCN"].shuffle
         @gps = Gps.new
         @velocidad = Internet.new
         @television = Television.new(canales[0])
-    end
-
+        @clima = Clima.new
+    end    
 end
 
+time = 19
+
 b1 = Bus.new
-puts b1.velocidad.velocidad
+puts "La velocidad del internet es de #{b1.velocidad.velocidad}MB"
 puts b1.gps.ubicacion
 puts b1.television.pelicula
-
-
-
-# - una clase Clima: con un metodo que reciba la hora del dia y retorne el pronostico para ese momento (crean un array con opciones de pronostico)
-
-
-# Incluya el modulo Conexiones en la clase Bus y utilice los metodos en instancia de Bus, MicroBus y SuperBus.
-
-# Prueben incluyendo Conexiones directamente en MicroBus y SuperBus.
+b1.clima.pronostico(time)

@@ -94,9 +94,9 @@ class MicroBus < Bus
     
     def ruta_actual(hora)
         hora = hora
-        if hora > 6 && hora < 9
+        if hora >= 6 && hora < 9
             puts "Te encuentras en la ruta #{@ruta[:nombre_ruta1]}"
-        elsif hora > 9 && hora < 12 
+        elsif hora >= 9 && hora < 12 
             puts "Te encuentras en la ruta #{@ruta[:nombre_ruta2]}"
         else 
             puts "Te encuentras en la ruta #{@ruta[:nombre_ruta3]}"   
