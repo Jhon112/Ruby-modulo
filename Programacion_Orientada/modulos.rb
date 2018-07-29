@@ -18,7 +18,7 @@ module Conexiones
     # - Una clase internet: con un metodo velocidad que retorne un aleatorio entre 5 y 20MB (con dos decimales)
     class Internet
         
-        def velocidad
+        def velocidad_internet
             speed = rand(5.00..20.00).round(2)          
         end
         
@@ -68,24 +68,3 @@ end
 
 
 ##Prueba de metodos!! --->
-
-class Bus
-    include Conexiones 
-    attr_reader :gps, :velocidad, :television, :clima
-
-    def initialize
-        canales = ["TNT", "Fox", "MTV", "Caracol", "RCN"].shuffle
-        @gps = Gps.new
-        @velocidad = Internet.new
-        @television = Television.new(canales[0])
-        @clima = Clima.new
-    end    
-end
-
-time = 19
-
-b1 = Bus.new
-puts "La velocidad del internet es de #{b1.velocidad.velocidad}MB"
-puts b1.gps.ubicacion
-puts b1.television.pelicula
-b1.clima.pronostico(time)
