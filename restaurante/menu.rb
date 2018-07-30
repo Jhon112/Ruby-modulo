@@ -11,8 +11,7 @@ module Menu
             new_arr.each do |codigo, producto, precio, disponible|
                 @products << {codigo: codigo, producto: producto, precio: precio, disponible: disponible}
             end           
-             
-            p @products
+                        
         end
                         
         # Mostrar el menu ( visualmente legible.)
@@ -60,14 +59,14 @@ module Menu
     end
 end
 
-class PruebaMetodos
-    include Menu
-    attr_reader :menu
-    def initialize
-        @menu = CargarMenu.new
+# class PruebaMetodos
+#     include Menu
+#     attr_reader :menu
+#     def initialize
+#         @menu = CargarMenu.new
         
-    end
-end
+#     end
+# end
 
-p1 = PruebaMetodos.new
-p1.menu.consultar
+# p1 = PruebaMetodos.new
+# p1.menu.consultar
