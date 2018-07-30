@@ -26,10 +26,9 @@
 
 def importar(@nombre, @telefono)
     txt = File.read("tarea.txt")
-    txt.split(",")
-    txt.chomp
+    txt_new = txt.split(",").chomp  
     
-    p txt
+    p txt_new
     
     @directorio[@nombre] = @telefono
 
