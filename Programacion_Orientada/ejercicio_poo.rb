@@ -70,6 +70,7 @@ class Bus
     end
 end
 
+
 p1 = Bus.new(20)
 p1.acelerar(60)
 puts "Vas a una velocidad de #{p1.velocidad}"
