@@ -1,4 +1,0 @@
-nombre, telefono
-pedro, 2056897
-Jhon,123
-jhon,12345

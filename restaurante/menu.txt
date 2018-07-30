@@ -1,0 +1,5 @@
+0000, Hamburguesa, 2500, Si
+0001, Perro, 2000, Si
+0002, Perra, 2500, No
+0003, Salchipapas, 5000, Si
+0004, Churripio, 7000, Si

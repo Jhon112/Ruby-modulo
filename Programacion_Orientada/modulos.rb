@@ -68,3 +68,20 @@ end
 
 
 ##Prueba de metodos!! --->
+
+class Bus
+    include Conexiones
+    attr_reader :gps, :internet
+
+
+    def initialize
+        @gps = Gps.new
+        @internet = Internet.new
+    end
+
+
+end
+
+p = Bus.new
+puts p.gps.ubicacion
+puts p.internet.velocidad_internet
