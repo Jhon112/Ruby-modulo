@@ -1,6 +1,7 @@
 # Modulo ordenes 
+require_relative 'menu.rb'
 module Ordenes     
-    require_relative 'menu.rb'
+      
     
     class Orden 
         attr_reader :menu
@@ -10,20 +11,27 @@ module Ordenes
             
         end
         
-        def agregar_productos
-            @menu 
+        def agregar_productos ()
+            @menu.products 
             @orden = []
-            puts "Ingrese el nombre del producto que desea"
-            @producto_deseado = gets.chomp
+            puts "Cuantos productos quiere?"
+            @cantidad_productos = gets.chomp.to_i
+            puts "Ingrese la mesa a la que pertenece la orden"
+            @mesa = gets.chomp            
             
-            puts @products
+            @productos_totales = []
 
-            @products.each do |product|
-                if @producto_deseado == @products[:name]
-                    @producto_deseado = @products
-                    @orden << producto_deseado                        
-                end                
-            end              
+            @cantidad_productos.times do 
+                puts "Ingrese el codigo del producto que desea"
+                @producto_deseado = gets.chomp
+                @menu.products.each do |product|
+                    if @producto_deseado == product[:codigo]
+                        @producto_deseado = product
+                    end                                    
+                end              
+                @productos_totales << @producto_deseado              
+            end
+            @orden << {mesa: @mesa, producto: @productos_totales}
                 puts @orden
         end
     end
@@ -32,14 +40,14 @@ module Ordenes
     # Mostrar todas las ordenes en cola.
 end
 
-class PruebaMetodos
-    include Ordenes
-    attr_reader :orden 
+# class PruebaMetodos
+#     include Ordenes
+#     attr_reader :orden 
 
-    def initialize
-        @orden = Ordenes::Orden.new      
-    end
-end
+#     def initialize
+#         @orden = Orden.new      
+#     end
+# end
 
-p1 = PruebaMetodos.new
-p1.orden.agregar_productos
+p1 = Ordenes::Orden.new
+p1.agregar_productos

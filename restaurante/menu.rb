@@ -2,7 +2,7 @@
 module Menu    
     # Cargar el menu desde un archivo txt con el formato: codigo, nombre producto, precio, disponible(true/false)
     class CargarMenu
-            
+            attr_accessor :products
         def initialize
            @products = []
             arr = IO.readlines("menu.txt")
@@ -69,4 +69,4 @@ end
 # end
 
 # p1 = PruebaMetodos.new
-# p1.menu.consultar
+# p1.menu.agregar
